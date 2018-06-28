@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="secure_template">
+<head>
+	<meta charset="UTF-8">
+	<title>Custom DataGrid Pager - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="/boot/static/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/boot/static/js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/boot/static/js/easyui/demo/demo.css">
+	<script type="text/javascript" src="/boot/static/js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/boot/static/js/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<div style="margin:20px 0;"></div>
+    <div style="margin:10px 40px;">
+    <table id="search"	class="showTable baseTable" data-options="singleSelect:true,pagination:true,url:'datagrid_data1.json',method:'get'">
+		<thead>
+			<tr>
+				<th width="10%">员工编号</th>
+			    <td width="30%"><input type="text" class="easyui-textbox" name="employNumbere" id="employNumber" size="40" maxlength="80" value="${dlOtherGuar.otherGuarName }" /></td>
+                <th width="10%">员工姓名</th>
+			    <td width="30%"><input type="text" class="easyui-textbox" name="userName" id="userName" size="40" maxlength="80" value="${dlOtherGuar.otherGuarName }" /></td>
+                <td width="40%"><a href="javascript:void(0)" class="easyui-linkbutton" style="width:50%;" onclick="$('#dlg').dialog('open')">搜索</a></td>
+			</tr>
+		</thead>
+	</table>
+    </div>
+	<table id="dg" style="width:1000px;height:450px"
+			data-options="rownumbers:true,singleSelect:true,pagination:true,url:'datagrid_data1.json',method:'get'">
+		<thead>
+			<tr>
+				<th data-options="field:'userId',width:80">用户ID</th>
+				<th data-options="field:'loginName',width:100">登录名</th>
+				<th data-options="field:'userName',width:80,align:'right'">员工姓名</th>
+				<th data-options="field:'idNumber',width:80,align:'right'">身份证号</th>
+				<th data-options="field:'mobilePhone',width:240">手机号码</th>
+				<th data-options="field:'employNumber',width:60,align:'center'">员工编号</th>
+			</tr>
+		</thead>
+	</table>
+	<script type="text/javascript">
+		$(function(){
+			var pager = $('#dg').datagrid().datagrid('getPager');	// get the pager of datagrid
+			pager.pagination({
+				buttons:[{
+					iconCls:'icon-search',
+					handler:function(){
+						alert('search');
+					}
+				},{
+					iconCls:'icon-add',
+					handler:function(){
+						alert('add');
+					}
+				},{
+					iconCls:'icon-edit',
+					handler:function(){
+						alert('edit');
+					}
+				}]
+			});			
+		})
+	</script>
+</body>
+</html>

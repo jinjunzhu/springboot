@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="secure_template" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Tree - jQuery EasyUI Demo</title>
+	<script type="text/javascript">
+		var index = 0;
+		function addPanel(panelName,tabName){
+
+			var exist = $('#mainDiv').tabs('exists', tabName);
+			if (exist) {
+				alert(exist);
+				$('#mainDiv').tabs('select', tabName);
+				return;
+			}
+
+			index++;
+			$('#mainDiv').tabs('add', {
+				title : tabName,
+				href : '/user/list',
+				closable: true
+			});
+		}
+	/*	function removePanel(){
+			var tab = $('#mainDiv').tabs('getSelected');
+			if (tab){
+				var index = $('#tt').tabs('getTabIndex', tab);
+				$('#tt').tabs('close', index);
+			}
+		}*/
+	</script>
+</head>
+<body>
+	<div class="easyui-panel" style="padding:0 0 500px 0">
+		<ul class="easyui-tree">
+			<li>
+				<span>系统菜单</span>
+				<ul>
+					<li data-options="state:'opened'">
+						<span>系统管理</span>
+						<ul>
+							<li sec:authorize="hasRole('ROLE_ADMIN')">
+								<div onclick="addPanel('/boot/user/userList.html','用户管理')">用户管理</div>
+							</li>
+							<li sec:authorize="hasRole('ROLE_USER')">
+								<div  onclick="addPanel('/boot/user/userList.html','角色管理')">角色管理</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

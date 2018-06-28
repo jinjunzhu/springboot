@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="secure_template">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Template</title>
+<link rel="stylesheet" href="/boot/static/js/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="/boot/static/resources/css/custom.css">
+<link type="text/css" href="/boot/static/resources/css/common.css" rel="stylesheet">
+<link type="text/css" href="/boot/static/resources/css/ddsmoothmenu.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/boot/static/js/easyui/themes/icon.css">
+<script type="text/javascript" src="/boot/static/js/jquery.js"></script>
+<script src="/boot/static/js/easyui/jquery.easyui.min.js"></script>
+<script src="/boot/static/js/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+  function logout() {
+      $('#logout').submit();
+  }
+</script>
+</head>
+<body  class="easyui-layout">
+<!-- 头部load: header.html -->
+<div data-options="region:'north', border:false" id="header">
+	<div id="headertop">
+		<div class="header">
+			<div class="logo">
+				<img alt="boot系统" style="font-size:30px;font-weight:bold;">
+			</div>
+			<div style="text-align:right;padding:5px 0">
+				<form th:action="@{/logout}" method="post" id="logout">
+					<a href="javascript:void(0)" class="easyui-linkbutton" style="width:80px" onclick="logout()">退出</a>
+			    </form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 左侧 -->
+<div class="easyui-panel" data-options="region:'west', split:true, title:'系统菜单'" id="nav" th:include="tree.html :: html">
+
+</div>
+<!-- 中间 Content -->
+<div class="easyui-panel" data-options="region:'center'">
+  <div class="easyui-layout" data-options="fit:true,region:'center'" th:include="nestedtabs.html :: html"></div>
+</div>
+
+<div data-options="region:'south', border:false" id="footer">
+	Ambow CopyRight 2012.10
+</div>
+
+</body>
+</html>

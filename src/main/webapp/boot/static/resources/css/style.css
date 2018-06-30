@@ -20,7 +20,7 @@ ul,li{ margin:0; padding:0; list-style:none}
 #content{ background:#fff; border-left:1px solid #ccc}
 
 /* header */
-.header { background: url(../images/top_bg.gif) no-repeat center top #fff; border-top: 3px solid #B80000; height: 36px; padding: 10px;}
+.header { background: url(../images/top_bg.gif) no-repeat center top #fff; border-top: 3px solid #B80000; height: 36px; padding: 15px;background-size: cover;}
 .logo{ float:left}
 .login { color: #999; height: 36px; line-height: 36px; padding: 0 10px; text-align: right;}
 .login span { padding:0 5px;}
